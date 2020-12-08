@@ -145,7 +145,7 @@ export default {
     ],
     rules: {
           required: v => !!v || 'Password is required',
-          min: v => v.length >= 8 || 'Min 8 characters',
+          min: v => v.length >= 8 || 'Min 8 characters and dont use any symbol or number',
         },
   }),
   methods: {

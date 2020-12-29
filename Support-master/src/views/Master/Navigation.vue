@@ -280,7 +280,7 @@
     search: '',
 		items: [
 		{ icon: 'mdi-home-circle', text: 'Home', name: 'home'},
-        { icon: 'mdi-account-circle', text: 'Profile', name: 'Profile' },
+        // { icon: 'mdi-account-circle', text: 'Profile', name: 'Profile' },
         // { icon: 'mdi-book-information-variant', text: 'Article' },
         {
           text: 'Tickets',

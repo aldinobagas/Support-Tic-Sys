@@ -36,7 +36,6 @@
           label="Email"
           required
           filled
-
           />
           <v-text-field
           v-model="form.phonenumber"
@@ -47,15 +46,15 @@
           required
           filled
           />
-          <v-select
-          v-model="form.gender"
+          <!-- <v-select
+          v-model="form"
           :items="gender"
           :rules="[v => !!v || 'Pilih Jenis Kelamin']"
           prepend-icon="mdi-account-cicle"
           label="Gender"
           filled
           required
-          ></v-select>
+          ></v-select> -->
           <v-text-field
             v-model="form.password"
             :append-icon="passwordd ? 'mdi-eye' : 'mdi-eye-off'"
@@ -120,12 +119,11 @@ export default {
       email: '',
       phonenumber: '',
       password: '',
-      gender: '',
     },
-    gender: [
-      'Female',
-      'Male',
-    ],
+    // gender: [
+    //   'Female',
+    //   'Male',
+    // ],
     passwordd: false,
     snackbar: false,
     text: 'Register success',
@@ -154,7 +152,7 @@ export default {
       "name" : this.form.name,
       "email" : this.form.email,
       "phonenumber" : this.form.phonenumber,
-      "gender" : this.form.gender,
+      // "gender" : this.gender,
       "password" : this.form.password
     }  
     registerAsUser(request)

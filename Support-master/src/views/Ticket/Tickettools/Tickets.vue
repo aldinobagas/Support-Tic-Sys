@@ -90,7 +90,7 @@
           >
             <v-text-field
               ref="Number"
-              v-model="editedItem.number"
+              v-model="form.number"
               :disabled="isUpdating"
               :rules="numberRules"
               filled
@@ -105,7 +105,7 @@
           >
             <v-text-field
               ref="Name"
-              v-model="editedItem.name"
+              v-model="form.name"
               :disabled="isUpdating"
               :rules="nameRules"
               filled
@@ -216,7 +216,7 @@
     <v-col cols="12">
     <v-textarea
       ref="Description"
-      v-model="editedItem.description"
+      v-model="form.description"
       clearable
       clear-icon="mdi-close-circle"
       label="Description"
@@ -236,7 +236,7 @@
             md="6">
             <v-autocomplete
               ref="Priority"
-              v-model="editedItem.priority"
+              v-model="prioritychoice"
               :disabled="isUpdating"
               :items="prioritychoice"
               :rules="priorityRules"
@@ -286,7 +286,7 @@
             md="6">
             <v-autocomplete
               ref="Divison"
-              v-model="editedItem.Division"
+              v-model="divisionchoice"
               :disabled="isUpdating"
               :items="divisionchoice"
               :rules="DivisionRules"
@@ -345,7 +345,7 @@
               <template v-slot:activator="{ on }">
               <v-text-field
               ref="date"
-              v-model="editedItem.date"
+              v-model="form.date"
               :rules="dateRules"
               label="Date"
               append-icon="mdi-calendar-range"
@@ -356,7 +356,7 @@
               v-on="on"
               ></v-text-field>
               </template>
-              <v-date-picker v-model="editedItem.date" no-title scrollable>
+              <v-date-picker v-model="form.date" no-title scrollable>
               <v-spacer></v-spacer>
               <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
               <v-btn text color="primary" @click="$refs.menu.save(date)">OK</v-btn>
@@ -444,14 +444,14 @@
 </v-dialog>
 </v-toolbar>
     </template>
-    <template v-slot:item.action="{ item }">
-      <!-- <v-icon
+    <template v-slot:[`item.actions`]="{ item }">
+      <v-icon
         small
         class="mr-2"
         @click="editItem(item)"
       >
         mdi-pencil
-      </v-icon> -->
+      </v-icon>
       <v-icon
         small
         @click="deleteItem(item)"
@@ -508,11 +508,8 @@
       number: '',
       name: '',
       description: '',
-      priority: '',
-      division: '',
       date: '',
       },
-      description : '',
       dialog : false,
       dialog2 : false,
       date : new Date().toISOString().substr(0, 10),
@@ -599,12 +596,12 @@
     methods: {
     saveNewTicket() {
       let request = {
-      "number" : this.editedItem.number,
-      "name" : this.editedItem.name,
-      "description" : this.editedItem.description,
-      "priority" : this.editedItem.priority,
-      "division" : this.editedItem.division,
-      "date" : this.editedItem.date
+      "number" : this.form.number,
+      "name" : this.form.name,
+      "description" : this.form.description,
+      "priority" : this.prioritychoice,
+      "division" : this.divisionchoice,
+      "date" : this.form.date
     }  
 
     console.log("masuk");
@@ -708,10 +705,10 @@
         this.dialog = true
       },
 
-      deleteItem (item) {
-        const index = this.tickets.indexOf(item)
-        confirm('Are you sure you want to delete this item?') && this.tickets.splice(index, 1)
-      },
+      // deleteItem (item) {
+      //   const index = this.tickets.indexOf(item)
+      //   confirm('Are you sure you want to delete this item?') && this.tickets.splice(index, 1)
+      // },
 
       close () {
         this.dialog = false
